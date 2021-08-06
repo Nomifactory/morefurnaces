@@ -21,7 +21,7 @@ import javax.annotation.Nonnull;
 public class ContainerIronFurnace extends Container {
     private final FurnaceType type;
     private final TileEntityIronFurnace furnace;
-    private int[] lastCookTime;
+    private final int[] lastCookTime;
     private int lastBurnTime = 0;
     private int lastItemBurnTime = 0;
 
@@ -40,7 +40,7 @@ public class ContainerIronFurnace extends Container {
         if (type.parallelSmelting != 1) {
             // OBSIDIAN FURNACE
             int index = 0;
-            for (int row = 0; row < 2; row++) {
+            for (int row = 0; row < type.parallelSmelting; row++) {
                 for (int col = 0; col < 2; col++) {
                     int x = 56 - 18 * col;
                     int y = 17 + 26 * row; // 26 to create the gap between the inputs
@@ -120,8 +120,8 @@ public class ContainerIronFurnace extends Container {
                 }
             }
             this.addSlotToContainer(new SlotOutput(inv.player, itemHandler, index++, 112, 53));
-            for (int row = 0; row < 2; row++) {
-                for (int col = 0; col < 4; col++) {
+            for (int col = 0; col < 2; col++) {
+                for (int row = 0; row < 4; row++) {
                     int x = 134 + 18 * col;
                     int y = 26 + 18 * row;
                     this.addSlotToContainer(new SlotOutput(inv.player, itemHandler, index++, x, y));
@@ -161,6 +161,8 @@ public class ContainerIronFurnace extends Container {
                 }
             }
 
+            // Use parallelSmelting and parallelSmelting + 1 as the burn time discriminators, since
+            // their indices depend on how many parallel recipes this Furnace is running
             if (lastBurnTime != furnace.furnaceBurnTime) {
                 listener.sendWindowProperty(this, type.parallelSmelting, furnace.furnaceBurnTime);
             }
@@ -202,7 +204,7 @@ public class ContainerIronFurnace extends Container {
     }
 
     private boolean isInputSlot(int i) {
-        return i >= type.getFirstInputSlot(0) && i <= type.getLastInputSlot(type.parallelSmelting - 1);
+        return i >= 0 && i <= type.getLastInputSlot(type.parallelSmelting - 1);
     }
 
     private boolean isFuelSlot(int i) {
@@ -235,7 +237,7 @@ public class ContainerIronFurnace extends Container {
 
     @Override
     @Nonnull
-    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+    public ItemStack transferStackInSlot(@Nonnull EntityPlayer playerIn, int index) {
         ItemStack stack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 

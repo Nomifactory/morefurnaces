@@ -27,10 +27,10 @@ public class SlotOutput extends SlotItemHandler {
     }
 
     @Override
-    public void onSlotChange(@Nonnull ItemStack p_75220_1_, @Nonnull ItemStack p_75220_2_) {
-        int d = p_75220_2_.getCount() - p_75220_1_.getCount();
+    public void onSlotChange(@Nonnull ItemStack stack1, @Nonnull ItemStack stack2) {
+        int d = stack2.getCount() - stack1.getCount();
         if (d > 0) {
-            onCrafting(p_75220_2_, d);
+            onCrafting(stack2, d);
         }
     }
 

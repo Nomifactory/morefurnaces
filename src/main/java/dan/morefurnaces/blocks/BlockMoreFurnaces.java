@@ -47,7 +47,7 @@ public class BlockMoreFurnaces extends Block implements ITileEntityProvider {
     @Override
     public Block setTranslationKey(String name) {
         super.setTranslationKey(name);
-        setRegistryName("morefurnaces", name);
+        setRegistryName(MoreFurnaces.MODID, name);
         return this;
     }
 

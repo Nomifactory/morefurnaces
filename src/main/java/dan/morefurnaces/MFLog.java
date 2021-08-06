@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * Obligatory...
  *
- * GregTech logger
+ * MoreFurnaces logger
  * One edit to this class and you're not alive anymore
  */
 public class MFLog {

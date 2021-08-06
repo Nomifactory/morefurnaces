@@ -98,7 +98,7 @@ public enum FurnaceType implements IStringSerializable {
     }
 
     public int getFirstInputSlot(int id) {
-        return 0 + id * inputSlots;
+        return id * inputSlots;
     }
 
     public int getLastInputSlot(int id) {
