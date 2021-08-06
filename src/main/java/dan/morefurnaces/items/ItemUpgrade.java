@@ -51,7 +51,7 @@ public class ItemUpgrade extends Item {
         Upgrades upgrade = Upgrades.values()[stack.getMetadata()];
 
         IBlockState state = world.getBlockState(pos);
-        if (state.getBlock() == MoreFurnaces.blockFurnaces) {
+        if (state.getBlock() instanceof BlockMoreFurnaces) {
             if (useOnModFurnace(playerIn, world, pos, stack, upgrade)) return EnumActionResult.SUCCESS;
         } else if (state.getBlock() == Blocks.FURNACE || state.getBlock() == Blocks.LIT_FURNACE) {
             if (upgrade.isVanillaUpgrade()) {
@@ -126,7 +126,7 @@ public class ItemUpgrade extends Item {
 
             copyInventory(furnace, fromSlotIds, newFurnace);
 
-            world.setBlockState(pos, MoreFurnaces.blockFurnaces.getDefaultState().withProperty(BlockMoreFurnaces.VARIANT, to));
+            world.setBlockState(pos, MoreFurnaces.BLOCK_FURNACE.getDefaultState().withProperty(BlockMoreFurnaces.VARIANT, to));
             world.setTileEntity(pos, newFurnace);
 
             newFurnace.copyStateFrom(furnace, facing);
