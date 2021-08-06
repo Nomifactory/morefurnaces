@@ -47,11 +47,16 @@ repositories {
         name = "JEI Maven"
         url = "https://dvs1.progwml6.com/files/maven/"
     }
+    maven {
+        name = "TOP Maven"
+        url = "http://maven.tterrag.com"
+    }
 }
 
 dependencies {
     testCompile 'junit:junit:4.5'
     runtime "mezz.jei:jei_1.12.2:4.15.0.293"
+    runtime "mcjty.theoneprobe:TheOneProbe-1.12:1.12-1.4.23-16"
 }
 
 processResources
