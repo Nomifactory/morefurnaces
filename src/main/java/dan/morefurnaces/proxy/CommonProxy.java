@@ -50,11 +50,11 @@ public class CommonProxy {
         registry.register(createItemBlock(MoreFurnaces.BLOCK_FURNACE, ItemMoreFurnaces::new));
     }
 
-    //@SubscribeEvent
-    //public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-    //    Recipes.registerFurnaceRecipes();
-    //    Recipes.registerUpgradeRecipes();
-    //}
+    @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+        Recipes.registerFurnaceRecipes();
+        Recipes.registerUpgradeRecipes();
+    }
 
     private static <T extends Block> ItemBlock createItemBlock(T block, Function<T, ItemBlock> producer) {
         ItemBlock itemBlock = producer.apply(block);
