@@ -75,7 +75,7 @@ public class TileEntityIronFurnace extends TileEntity implements ITickable {
         currentItemBurnTime = furnace.currentItemBurnTime;
         facing = furnace.facing;
         isActive = furnace.isActive;
-        world.addBlockEvent(pos, MoreFurnaces.blockFurnaces, 2, (byte) (isActive ? 1 : 0));
+        world.addBlockEvent(pos, MoreFurnaces.BLOCK_FURNACE, 2, (byte) (isActive ? 1 : 0));
     }
 
     public void copyStateFrom(TileEntityFurnace furnace, byte facing) {
@@ -84,7 +84,7 @@ public class TileEntityIronFurnace extends TileEntity implements ITickable {
         currentItemBurnTime = furnace.getField(1);
         setFacing(facing);
         isActive = furnace.isBurning();
-        world.addBlockEvent(pos, MoreFurnaces.blockFurnaces, 2, (byte) (isActive ? 1 : 0));
+        world.addBlockEvent(pos, MoreFurnaces.BLOCK_FURNACE, 2, (byte) (isActive ? 1 : 0));
     }
 
     public int getSpeed() {
@@ -101,7 +101,7 @@ public class TileEntityIronFurnace extends TileEntity implements ITickable {
 
     public void setFacing(byte value) {
         facing = value;
-        world.addBlockEvent(pos, MoreFurnaces.blockFurnaces, 1, facing & 0xFF);
+        world.addBlockEvent(pos, MoreFurnaces.BLOCK_FURNACE, 1, facing & 0xFF);
     }
 
     public boolean isActive() {
@@ -186,8 +186,8 @@ public class TileEntityIronFurnace extends TileEntity implements ITickable {
     @Override
     public void update() {
         if (++ticksSinceSync % 20 * 4 == 0) {
-            world.addBlockEvent(pos, MoreFurnaces.blockFurnaces, 1, facing & 0xFF);
-            world.addBlockEvent(pos, MoreFurnaces.blockFurnaces, 2, (byte) (isActive ? 1 : 0));
+            world.addBlockEvent(pos, MoreFurnaces.BLOCK_FURNACE, 1, facing & 0xFF);
+            world.addBlockEvent(pos, MoreFurnaces.BLOCK_FURNACE, 2, (byte) (isActive ? 1 : 0));
         }
 
         boolean wasBurning = this.isBurning();
