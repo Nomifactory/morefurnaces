@@ -21,7 +21,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-group = "omnifactorydevs.morefurnaces"
+group = "nomifactory.morefurnaces"
 version = getRewrittenVersion()
 archivesBaseName = project_artifact_name
 
